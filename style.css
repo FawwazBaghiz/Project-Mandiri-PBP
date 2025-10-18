@@ -1,0 +1,17 @@
+body {
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.card img {
+  height: 250px;
+  object-fit: cover;
+}
+
+footer {
+  letter-spacing: 1px;
+}
+body.bg-dark .text-muted {
+  color: #f8f9fa !important;
+}
+
+

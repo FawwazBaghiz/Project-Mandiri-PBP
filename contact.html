@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hubungi Kami - NorestStore</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
+    .navbar, .footer {
+      transition: background-color 0.3s;
+    }
+    .dark-mode .navbar {
+      background-color: #1f1f1f !important;
+    }
+    .dark-mode .footer {
+      background-color: #1f1f1f !important;
+    }
+    .footer {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+    .form-control:focus {
+      box-shadow: 0 0 8px rgba(13, 110, 253, 0.6);
+      border-color: #0d6efd;
+    }
+    .alert {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">NorestStore</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="books.html">Koleksi</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Kontak</a></li>
+          <li class="nav-item">
+            <button id="toggleMode" class="btn btn-outline-light ms-3">🌙</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container" style="margin-top: 100px;">
+    <div class="text-center mb-4">
+      <h2>Hubungi Kami</h2>
+      <p>Ingin memberi masukan, bertanya, atau berkolaborasi? Kirim pesanmu di bawah ini!</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow border-0 p-4">
+          <form id="contactForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nama Lengkap</label>
+              <input type="text" id="name" class="form-control" placeholder="Masukkan nama lengkap Anda">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="contoh@email.com">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Pesan</label>
+              <textarea id="message" class="form-control" rows="4" placeholder="Tulis pesan Anda..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
+          </form>
+          <div class="alert alert-success mt-3" role="alert" id="successMsg">
+            ✅ Pesan Anda telah berhasil dikirim! Terima kasih telah menghubungi kami.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer text-center">
+    <div class="container">
+      <p class="mb-0">© 2025 NorestStore. Semua hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+    const toggleBtn = document.getElementById('toggleMode');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.textContent = toggleBtn.textContent === '🌙' ? '☀️' : '🌙';
+    });
+
+    const contactForm = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMsg');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert("⚠️ Harap isi semua kolom sebelum mengirim pesan!");
+        return;
+      }
+
+      if (!email.includes('@') || !email.includes('.')) {
+        alert("⚠️ Masukkan format email yang valid!");
+        return;
+      }
+
+      successMsg.style.display = 'block';
+      contactForm.reset();
+
+      setTimeout(() => {
+        successMsg.style.display = 'none';
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
